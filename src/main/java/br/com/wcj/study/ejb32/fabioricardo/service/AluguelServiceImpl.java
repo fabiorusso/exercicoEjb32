@@ -26,7 +26,8 @@ public class AluguelServiceImpl implements AluguelService {
 	@Inject 
 	private SeguradoraService seguradoraService;
 	
-	void alugarCarro(Cliente cliente, Carro carro, int dias) {
+	@Override
+	public void alugarCarro(Cliente cliente, Carro carro, int dias) {
 		DadosSeguradora dados = seguradoraService.obterDadosSeguradoraDoCliente(cliente);
 		
 		Double valorDiaria = obterValorDiariaTabela();
@@ -55,11 +56,13 @@ public class AluguelServiceImpl implements AluguelService {
 		Aluguel al = new Aluguel();
 		al.setCliente(cliente);
 		al.setDias(diasAluguel);
+		al.setCarro(carro);
 		al.setTotalPagar(diasAluguel * valorDiaria);
 		
 		logger.info("Salvando diaria...");
 	}
 	
+	@Override
 	public void realizarDevolucao(Aluguel aluguel) {
 		if (StatusAluguel.ALUGADO.equals(aluguel)) {
 			logger.info("Finalizando aluguel...");
