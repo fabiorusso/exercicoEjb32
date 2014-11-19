@@ -1,11 +1,10 @@
-package br.com.wcj.stady.ejb32.fabioricardo.persistence;
+package br.com.wcj.study.ejb32.fabioricardo.persistence;
 
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +19,8 @@ public class Usuario implements Serializable {
 	@Id
 	private String login;
 
-	@Enumerated(EnumType.STRING)
-	private TipoUsuario tipo;
+	@OneToOne
+	private Cliente cliente;
 
 	public String getLogin() {
 		return login;
@@ -31,12 +30,12 @@ public class Usuario implements Serializable {
 		this.login = login;
 	}
 
-	public TipoUsuario getTipo() {
-		return tipo;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setTipo(TipoUsuario tipo) {
-		this.tipo = tipo;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 }

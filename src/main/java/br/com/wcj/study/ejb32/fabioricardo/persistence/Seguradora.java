@@ -1,13 +1,15 @@
-package br.com.wcj.stady.ejb32.fabioricardo.persistence;
+package br.com.wcj.study.ejb32.fabioricardo.persistence;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="seguradora")
+@Table(name = "seguradora")
 public class Seguradora implements Serializable {
 
 	/**
@@ -19,6 +21,9 @@ public class Seguradora implements Serializable {
 	private Long id;
 
 	private String nome;
+
+	@OneToMany
+	private Set<Cliente> cliente;
 
 	public Long getId() {
 		return id;
@@ -34,6 +39,14 @@ public class Seguradora implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Set<Cliente> getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Set<Cliente> cliente) {
+		this.cliente = cliente;
 	}
 
 }
